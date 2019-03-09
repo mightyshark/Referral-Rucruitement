@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+<div>
+<div>
+<h:form> 
+<ul >
+	<ui:repeat value="#{reclamationJOBean.getRecs(user.getId())}" var="item">
+		<li><h:outputText value="#{item.objet}" /></li>
+		<li><h:outputText value="#{item.contenu}"/></li>
+		<li><h:outputText value="#{item.date}"/></li>
+	</ui:repeat>
+</ul>
+</h:form>                       
+</div>      
+</div>            
+     
+</ui:composition>

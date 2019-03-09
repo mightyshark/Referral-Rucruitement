@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HRsmartWeb.Models.CandidateViewModel>
+
+@{
+    ViewBag.Title = "List of candidates by Job Offer ";
+}
+
+<h2>List of candidates </h2>
+
+
+<table class="table">
+
+
+
+
+        <tr>
+            <th style="color:midnightblue">Job Title</th>
+            <th style="color:midnightblue"> Candidate FirstName</th>
+            <th style="color:midnightblue">Candidate LastName</th>
+            <th style="color:midnightblue">Candidate Adress</th>
+            <th style="color:midnightblue">Candidate Email</th>
+            <th style="color:midnightblue">Candidate Contact Numer</th>
+            <th style="color:midnightblue">Candidate LinkedInProfile</th>
+            <th style="color:midnightblue">Reffered By </th>
+        </tr>
+
+
+
+    
+
+@foreach (var item in Model) {
+    <tr>
+       
+
+        <td>
+            @Html.DisplayFor(modelItem => item.JobOffer.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkedInProfile)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.FirstName)  @Html.DisplayFor(modelItem => item.Employee.LastName)
+
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CandidateId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CandidateId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CandidateId })
+        </td>
+    </tr>
+}
+
+</table>

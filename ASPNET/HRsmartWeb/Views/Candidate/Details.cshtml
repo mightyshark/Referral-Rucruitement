@@ -1,0 +1,119 @@
+﻿
+@model HRsmartWeb.Models.CandidateViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+
+<div>
+    <fieldset>
+        <center> <h4>Detailed informations of the candidate</h4></center>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Recommandation Id :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CandidateId)
+            </dd>
+            <dt>
+                CIN :
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cin)
+            </dd>
+
+            <dt>
+                First Name :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                Last Name :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                Age :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+
+            <dt>
+                Adresse :
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Adresse)
+            </dd>
+
+            <dt>
+                Email Adress :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                Gender :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+            <dt>
+                Contact Number :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactNumber)
+            </dd>
+
+            <dt>
+                LinkedIn Profile :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LinkedInProfile)
+            </dd>
+
+            <dt>
+                FaceBook Profile :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FaceBookProfile)
+            </dd>
+
+
+
+            <dt>
+                Recommandations :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Recommandations)
+            </dd>
+
+            <dt>
+                Skype Id :
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SkypeId)
+            </dd>
+
+        </dl>
+    </fieldset>
+</div>

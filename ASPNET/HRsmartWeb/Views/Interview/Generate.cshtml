@@ -1,0 +1,72 @@
+﻿@model IEnumerable<HRsmartWeb.Models.InterviewViewModel>
+
+
+@{
+    ViewBag.Title = "Generate";
+}
+
+<h2>Generate</h2>
+
+ 
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InterviewId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CandidateStates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeedBack)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterviewId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateStates)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeedBack)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InterviewId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.InterviewId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InterviewId })
+                </td>
+            </tr>
+        }
+
+    </table>

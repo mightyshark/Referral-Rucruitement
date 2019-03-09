@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+ 	>
+	  
+<h:head></h:head> 
+
+<body> 
+
+<h:form >
+		
+			<h:dataTable value="#{jobOfferBean.findAll()}" var="r" border="1">
+				<f:facet name="header">All Reclamations</f:facet>
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{r.jobId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Job title</f:facet>
+					<h:outputText value="#{r.jobTitle}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">contract</f:facet>
+					<h:outputText value="#{r.contratType}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Location</f:facet>
+					<h:outputText value="#{r.location}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Job Date</f:facet>
+					<h:outputText value="#{r.expirationDate}" />
+				</h:column>
+				<h:column>
+				<h:commandButton value="Delete"
+					action="#{jobOfferBean.doDelete(r.jobId)}" />
+					</h:column>
+			<h:column>
+			
+			<h:commandButton value="Update"
+					 action="#{jobOfferBean.goToupdate(r.jobId)}"  />
+  					</h:column>
+			
+			</h:dataTable>
+			
+			
+					</h:form>
+	
+		
+				<h2></h2>
+		
+
+</body> 
+</ui:composition> 

@@ -1,0 +1,289 @@
+﻿@model HRsmartWeb.Models.CustomizeAppModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MyTemplate1.cshtml";
+
+}
+
+
+<div class="item">
+    <img src="@Url.Content("~/Content/MyTemplate/images/")banner4.png" alt="slider" title="slider" class="img-responsive" />
+    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- login start here -->
+<div id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!-- login-content start here -->
+                <div class="login-content">
+                    <h1>Add  Entreprise Propreties </h1>
+
+                </div>
+                <!-- login-content end here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Create", "CustomizeApp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!-- login end here -->
+    <!-- login-form start here -->
+    <div id="login-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-2 col-md-8 col-sm-8  col-xs-12">
+                    <div class="form">
+                        <div class="border"></div>
+                        <div class="border1"></div>
+                        <form class="form-horizontal" method="post">
+                            <fieldset>
+                                @*<div class="row form-group">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Picture</label>
+
+
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("picture", null, new { type = "file" })
+                                        @Html.ValidationMessageFor(model => model.Logo)
+                                    </div>
+                                </div>*@
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Entreprise Name</label>
+                                        @Html.EditorFor(model => model.WlcText, new { htmlAttributes = new { placeholder = "WlcText", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.WlcText, "", new { @class = "text-danger" })
+
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>company state</label>
+                                        @Html.DropDownList("Company State", EnumHelper.GetSelectList(typeof(CompState)), "Select Company State", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CompS, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>company state</label>
+                                        @Html.DropDownList("Company Field", EnumHelper.GetSelectList(typeof(CompField)), "Select Company Field", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CompS, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-sm-12">
+                                        @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { id = "stDateTxt", placeholder = "Start Date", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CreationDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.address.city, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.address.city, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.address.city, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.address.country, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.address.country, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.address.country, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-11">
+                                    <fieldset>
+                                        <legend style="font-family: Arial Black; color: blue; font-size: large;">Choose your city </legend>
+                                        <meta charset="utf-8">
+                                        <meta name="viewport" content="width=device-width, initial-scale=1">
+                                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                                        <input id="pac-input" class="controls" type="text"
+                                               placeholder="Enter a location">
+                                        <div id="type-selector" class="controls">
+                                            <input type="radio" name="type" id="changetype-all" checked="checked">
+                                            <label for="changetype-all">All</label>
+
+                                            <input type="radio" name="type" id="changetype-establishment">
+                                            <label for="changetype-establishment">Establishments</label>
+
+                                            <input type="radio" name="type" id="changetype-address">
+                                            <label for="changetype-address">Addresses</label>
+
+                                            <input type="radio" name="type" id="changetype-geocode">
+                                            <label for="changetype-geocode">Geocodes</label>
+                                        </div>
+                                        <div id="map" style="height:400px;width:100%;"></div>
+                                        <script>
+                        // This example requires the Places library. Include the libraries=places
+                        // parameter when you first load the API. For example:
+
+                        function initMap() {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                center: { lat: -33.8688, lng: 151.2195 },
+                                zoom: 13
+                            });
+                            var input = (
+                                document.getElementById('pac-input'));
+
+                            var types = document.getElementById('type-selector');
+                            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                            map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+                            var autocomplete = new google.maps.places.Autocomplete(input);
+                            autocomplete.bindTo('bounds', map);
+
+                            var infowindow = new google.maps.InfoWindow();
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                anchorPoint: new google.maps.Point(0, -29)
+                            });
+
+                            autocomplete.addListener('place_changed', function () {
+                                infowindow.close();
+                                marker.setVisible(false);
+                                var place = autocomplete.getPlace();
+                                if (!place.geometry) {
+                                    // User entered the name of a Place that was not suggested and
+                                    // pressed the Enter key, or the Place Details request failed.
+                                    window.alert("No details available for input: '" + place.name + "'");
+                                    return;
+                                }
+
+                                // If the place has a geometry, then present it on a map.
+                                if (place.geometry.viewport) {
+                                    map.fitBounds(place.geometry.viewport);
+                                } else {
+                                    map.setCenter(place.geometry.location);
+                                    map.setZoom(17);  // Why 17? Because it looks good.
+                                }
+                                marker.setIcon(({
+                                    url: place.icon,
+                                    size: new google.maps.Size(71, 71),
+                                    origin: new google.maps.Point(0, 0),
+                                    anchor: new google.maps.Point(17, 34),
+                                    scaledSize: new google.maps.Size(35, 35)
+                                }));
+                                marker.setPosition(place.geometry.location);
+                                marker.setVisible(true);
+
+                                var address = '';
+                                if (place.address_components) {
+                                    address = [
+                                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                                      (place.address_components[2] && place.address_components[2].short_name || ''),
+                                    (place.address_components[3] && place.address_components[3].short_name || '')
+
+                                    ].join(' ');
+                                }
+                                document.getElementById('address_city').value = place.name;
+                                document.getElementById('address_country').value = place.address_components[3].long_name;
+                                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                                infowindow.open(map, marker);
+                            });
+
+                            // Sets a listener on a radio button to change the filter type on Places
+                            // Autocomplete.
+                            function setupClickListener(id, types) {
+                                var radioButton = document.getElementById(id);
+                                radioButton.addEventListener('click', function () {
+                                    autocomplete.setTypes(types);
+                                });
+                            }
+
+                            setupClickListener('changetype-all', []);
+                            setupClickListener('changetype-address', ['address']);
+                            setupClickListener('changetype-establishment', ['establishment']);
+                            setupClickListener('changetype-geocode', ['geocode']);
+                        }
+                                        </script>
+                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIrD5kHgYF0EemfpWJ0ydRNqUiUWSKSI0&libraries=places&callback=initMap"
+                                                async defer></script>
+
+                                    </fieldset>
+
+
+                                </div>
+                               
+                            </fieldset>
+                            <div>
+                                <div class="button">
+                                    <div class="col-sm-offset-1">
+                                        <span style="color:red">@ViewBag.MessageErreur</span>
+                                        <input ID="Button1" type="submit" value="Create" onclick="ValidateStartDate()" class="btn btn-primary btnus" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+}
+<!-- login-form  end here -->
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+function myFunction() {
+    var txt;
+    if (confirm("Added with success") == true) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+
+
+</script>
+
+<script type="text/javascript">
+
+
+    function ValidateStartDate() {
+        var Date = document.getElementById('stDateTxt').value;
+
+        var today = new Date();
+
+      if (Date < today ) {
+                 alert('Error : Select Date is greater than today!');
+                document.getElementById('stDateTxt').value = '';
+                document.getElementById('stDateTxt').focus();
+        }
+
+        }
+
+</script>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript" src="/Scripts/jquery.validate.js"></script>

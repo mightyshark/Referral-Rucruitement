@@ -1,0 +1,190 @@
+﻿@model IEnumerable<HRsmartWeb.Models.UserViewModel>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyTemplate1.cshtml";
+
+}
+
+<div class="item">
+    <img src="@Url.Content("~/Content/MyTemplate/images/")banner4.png" alt="slider" title="slider" class="img-responsive" />
+    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jobs start here -->
+@*<div id="jobs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                <!-- about-content start here -->
+                <div class="jobs-content">
+                    <h1> Users List </h1>
+
+
+
+                    
+
+                </div>
+                <!-- jobs-content end here -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jobs end here -->*@
+
+
+<div id="featured">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <!-- featured-jobs start here -->
+                <div class="featured-jobs">
+                    <h1>Users List</h1>
+                    <div class="border"></div>
+                    <div class="border1"></div>
+                </div>
+                @using (Html.BeginForm("Export", "User", FormMethod.Post))
+                {
+                    <input type="hidden" name="GridHtml" />
+                    <center>  <input class="btn btn-success" type="submit" id="btnSubmit" value="Export To Excel" onclick="exp()" /></center>
+
+                        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(function exp() {
+                                    $("#btnSubmit").click(function () { $("input[name='GridHtml']").val($("#Grid").html()); });
+                                });
+                            </script>     }
+
+                <div class="col-md-10 col-sm-12 col-xs-12">
+
+                    <style>
+                        table {
+                            font-family: arial, sans-serif;
+                            border-collapse: collapse;
+                            width: 100%;
+                            margin-right: 55px;
+
+                        }
+
+                        td, th {
+                            border: 1px solid #dddddd;
+                            text-align:center;
+                            padding: 8px;
+                        }
+
+                        tr:nth-child(even) {
+                            background-color: #dddddd;
+                            
+                        }
+                    </style>
+
+
+                    <div>
+                        .
+                    </div>
+                    <div id="Grid">
+                        <table class=nth-child() >
+                            <thead>
+                                <tr>
+
+                                    <th style="color:cornflowerblue">First Name</th>
+                                    <th style="color:cornflowerblue">Last Name</th>
+
+                                    <th style="color:cornflowerblue">Email</th>
+                                    <th style="color:cornflowerblue">Role</th>
+                                    <th style="color:cornflowerblue">Details</th>
+                                    <th style="color:cornflowerblue">Update</th>
+                                    <th style="color:cornflowerblue">Delete</th>
+
+                                </tr>
+                            </thead>
+
+
+
+                            @foreach (var item in ViewBag.result)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @item.FirstName
+                                    </td>
+
+                                    <td>
+                                        @item.LastName
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.Role
+                                    </td>
+
+
+                                    <td>
+                                        @Html.ActionLink("Details ", "Details", new { id = item.UserId }, htmlAttributes: new { @class = "btn btn-primary btnus", data_toggle = "modal", data_target = "#myModal", @style = "color:white" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Update", "Edit", new { id = item.UserId }, new { @class = "btn btn-info", @style = "color:white" })
+                                    </td>
+
+                                    <td>
+                                        @Html.ActionLink("Delete ", "Delete", new { id = item.UserId }, new { @class = "btn btn-danger", @style = "color:white", data_toggle = "modal", data_target = "#myModal" })
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <a href="~/Views/User/Index.cshtml">~/Views/User/Index.cshtml</a>
+
+                <a class="custom-close"> My Custom Close Link </a>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+
+
+    $(function () {
+        $(".custom-close").on('click', function () {
+            $('#myModal').modal('hide');
+        });
+    });</script>

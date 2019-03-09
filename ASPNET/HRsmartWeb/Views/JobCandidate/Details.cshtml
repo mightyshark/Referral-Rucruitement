@@ -1,0 +1,112 @@
+﻿@model HRsmartWeb.Models.CandidateViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CandidateViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkedInProfile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkedInProfile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaceBookProfile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaceBookProfile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recommandations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recommandations)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkypeId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "", new { id = Model.CandidateId }) |
+    @Html.ActionLink("Back to List", "Index")
+
+   
+</p>
+<div >
+    <button class="btn" data-dismiss="modal">Create Interview</button>
+
+</div>

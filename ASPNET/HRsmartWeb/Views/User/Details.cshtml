@@ -1,0 +1,54 @@
+﻿@model HRsmartWeb.Models.UserViewModel
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+
+<div>
+
+    <fieldset>
+        <center> <h4>Detailed informations of the User</h4></center>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                First Name :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                Last Name :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                Email Adress  :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+           
+            <dt>
+               Role :
+            </dt>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.Role)
+            </dd>
+
+           
+
+        </dl>
+    </fieldset>
+</div>

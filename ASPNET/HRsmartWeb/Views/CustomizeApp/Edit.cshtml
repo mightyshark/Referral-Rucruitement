@@ -1,0 +1,325 @@
+﻿@model HRsmartWeb.Models.CustomizeAppModel
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+<div class="item">
+    <img src="@Url.Content("~/Content/MyTemplate/images/")banner4.png" alt="slider" title="slider" class="img-responsive" />
+    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- login start here -->
+<div id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!-- login-content start here -->
+                <div class="login-content">
+                    <h1>Update Entreprise Information </h1>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>></li>
+                        <li>
+                            <a href="login.html">Update Informations</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- login-content end here -->
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Edit</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="form-horizontal">
+        <h4>CustomizeAppModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdCustom)
+
+
+
+
+        <div class="row form-group">
+
+
+            <div class="col-md-4">
+                <div class="btn btn-primary">
+
+                    @Html.TextBox("Logo", null, new { id = "imageBrowes", type = "file" })
+                    @Html.ValidationMessageFor(model => model.Logo)
+                </div>
+
+
+                <div id="imgPreview" class="thumbnail" style="display:none">
+                    <img class="img-responsive" id="targetImg" />
+                    <div class="caption">
+                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                        <span id="description"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-2 thumbnail" id="uploadedImage">
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WlcText, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.WlcText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.WlcText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+                <!--/.col (map placement) -->
+            <div class="col-md-6">
+                <fieldset>
+                    <legend style="font-family: Arial Black; color: blue; font-size: large;">Choose your city </legend>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                    <input id="pac-input" class="controls" type="text"
+                           placeholder="Enter a location">
+                    <div id="type-selector" class="controls">
+                        <input type="radio" name="type" id="changetype-all" checked="checked">
+                        <label for="changetype-all">All</label>
+
+                        <input type="radio" name="type" id="changetype-establishment">
+                        <label for="changetype-establishment">Establishments</label>
+
+                        <input type="radio" name="type" id="changetype-address">
+                        <label for="changetype-address">Addresses</label>
+
+                        <input type="radio" name="type" id="changetype-geocode">
+                        <label for="changetype-geocode">Geocodes</label>
+                    </div>
+                    <div id="map" style="height:400px;width:100%;"></div>
+                    <script>
+                        // This example requires the Places library. Include the libraries=places
+                        // parameter when you first load the API. For example:
+
+                        function initMap() {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                center: { lat: -33.8688, lng: 151.2195 },
+                                zoom: 13
+                            });
+                            var input = (
+                                document.getElementById('pac-input'));
+
+                            var types = document.getElementById('type-selector');
+                            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                            map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+                            var autocomplete = new google.maps.places.Autocomplete(input);
+                            autocomplete.bindTo('bounds', map);
+
+                            var infowindow = new google.maps.InfoWindow();
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                anchorPoint: new google.maps.Point(0, -29)
+                            });
+
+                            autocomplete.addListener('place_changed', function () {
+                                infowindow.close();
+                                marker.setVisible(false);
+                                var place = autocomplete.getPlace();
+                                if (!place.geometry) {
+                                    // User entered the name of a Place that was not suggested and
+                                    // pressed the Enter key, or the Place Details request failed.
+                                    window.alert("No details available for input: '" + place.name + "'");
+                                    return;
+                                }
+
+                                // If the place has a geometry, then present it on a map.
+                                if (place.geometry.viewport) {
+                                    map.fitBounds(place.geometry.viewport);
+                                } else {
+                                    map.setCenter(place.geometry.location);
+                                    map.setZoom(17);  // Why 17? Because it looks good.
+                                }
+                                marker.setIcon(({
+                                    url: place.icon,
+                                    size: new google.maps.Size(71, 71),
+                                    origin: new google.maps.Point(0, 0),
+                                    anchor: new google.maps.Point(17, 34),
+                                    scaledSize: new google.maps.Size(35, 35)
+                                }));
+                                marker.setPosition(place.geometry.location);
+                                marker.setVisible(true);
+
+                                var address = '';
+                                if (place.address_components) {
+                                    address = [
+                                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                                      (place.address_components[2] && place.address_components[2].short_name || ''),
+                                    (place.address_components[3] && place.address_components[3].short_name || '')
+
+                                    ].join(' ');
+                                }
+                                document.getElementById('address_city').value = place.name;
+                                document.getElementById('address_country').value = place.address_components[3].long_name;
+                                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                                infowindow.open(map, marker);
+                            });
+
+                            // Sets a listener on a radio button to change the filter type on Places
+                            // Autocomplete.
+                            function setupClickListener(id, types) {
+                                var radioButton = document.getElementById(id);
+                                radioButton.addEventListener('click', function () {
+                                    autocomplete.setTypes(types);
+                                });
+                            }
+
+                            setupClickListener('changetype-all', []);
+                            setupClickListener('changetype-address', ['address']);
+                            setupClickListener('changetype-establishment', ['establishment']);
+                            setupClickListener('changetype-geocode', ['geocode']);
+                        }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIrD5kHgYF0EemfpWJ0ydRNqUiUWSKSI0&libraries=places&callback=initMap"
+                            async defer></script>
+
+                </fieldset>
+
+
+            </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $("#imageBrowes").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        })
+
+    })
+
+
+    var ReadImage = function (file) {
+
+        var reader = new FileReader;
+        var image = new Image;
+
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+
+            image.src = _file.target.result;
+            image.onload = function () {
+
+                var height = this.height;
+                var width = this.width;
+                var type = file.type;
+                var size = ~~(file.size / 1024) + "KB";
+
+                $("#targetImg").attr('src', _file.target.result);
+                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                $("#imgPreview").show();
+
+            }
+
+        }
+
+    }
+
+    var ClearPreview = function () {
+        $("#imageBrowes").val('');
+        $("#description").text('');
+        $("#imgPreview").hide();
+
+    }
+
+    var Uploadimage = function () {
+
+        var file = $("#imageBrowes").get(0).files;
+
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+        data.append("ProductName", "SamsungA8");
+
+        $.ajax({
+
+            type: "Post",
+            url: "/Test/ImageUpload",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                ClearPreview();
+
+                $("#uploadedImage").append('<img src="~/Content/UploadImage' + response + '" class="img-responsive thumbnail"/>');
+
+
+            }
+
+        })
+
+
+        //
+    }
+
+</script>
+
+
+

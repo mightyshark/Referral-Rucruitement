@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/templateRM.xhtml"
+ 	>
+<ui:define name="pageContent">	  
+<h:head></h:head> 
+<body> 
+
+	<div class="item">
+            <img src="resources/images/banner4.png" alt="slider" title="slider" class="img-responsive" />
+			    <div class="slide-detail">
+                <div class="container">
+                    <div class="slider-caption">
+                        <div class="off"></div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login start here -->
+        <div id="login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!-- login-content start here -->
+                        <div class="login-content">
+                            <h1>Add New Offer </h1>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="Index">Home</a>
+                                </li>
+                                <li></li>
+                               
+                            </ul>
+                        </div>
+                        <!-- login-content end here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+    <!-- login end here -->
+    <!-- login-form start here -->
+            <div id="login-form">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-md-8 col-sm-8  col-xs-12">
+                            <div class="form">
+                                <div class="border"></div>
+                                <div class="border1"></div>
+                  				<h:form class="form-horizontal">
+                                
+                                <h:panelGrid columns="2" value="#{jobOfferBean.jo}" var="r">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label>Job Title</label>
+                                               <h:inputText value="#{jobOfferBean.jo.jobTitle}" />
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label>Reference</label>
+                                               <h:inputText value="#{jobOfferBean.jo.reference}" />
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label>Mission</label>
+													 <h:inputText value="#{jobOfferBean.jo.mission}" />
+                                               </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label>Demanded Profil</label>
+                                                <h:inputText value="#{jobOfferBean.jo.demanderProfile}" /></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label>Location</label>
+                                                <h:inputText value="#{jobOfferBean.jo.location}" /></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                            <label>Contrat Type</label>
+                                          <h:inputText value="#{jobOfferBean.jo.contratType}" /></div>
+                                               </div>
+                                       
+                                        <div class="form-group">
+                                        <div class="col-sm-12">
+                                        <label>Expiration Date</label>
+                                          <h:inputText value="#{jobOfferBean.jo.expirationDate}" />
+                                          </div> 
+                                        </div>
+
+                                        <div class="button">
+                                            <div class="col-sm-offset-1">
+                                            	
+												<h:commandButton action="#{jobOfferBean.doAdd(jobOfferBean.jo)}" value="Add Job Offer" class="btn btn-primary btnus" />	
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    </h:panelGrid>
+                                                                   </h:form>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	
+
+				
+
+</body> 
+</ui:define>
+</ui:composition>
+

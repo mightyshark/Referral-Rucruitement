@@ -1,0 +1,250 @@
+﻿@model IEnumerable<HRsmartWeb.Models.InterviewViewModel>
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyTemplate.cshtml";
+
+}
+
+<div class="item">
+    <img src="@Url.Content("~/Content/MyTemplate/images/")banner4.png" alt="slider" title="slider" class="img-responsive" />
+    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*<!-- jobs start here -->
+    <div id="jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                    <!-- about-content start here -->
+                    <div class="jobs-content">
+                        <h1> Interviews List </h1>
+                        <ul class="list-inline">
+                            <li>
+                                <a>Recommanded Candidates</a>
+
+                            </li>
+                            <li>></li>
+                            <li>
+                                <a> Interviews List</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- jobs-content end here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jobs end here -->*@
+
+
+
+<div id="featured">
+    <div class="container">
+        <div class="row">
+            <!-- featured-jobs start here -->
+            <div class="featured-jobs">
+                <h1>Interviews List</h1>
+                <div class="border"></div>
+                <div class="border1"></div>
+
+            </div>
+            <div class="form-actions no-color" align="center">
+                <button style="padding:10px; padding-left:5px; padding-right:5px"  class="btn btn-success">@Html.ActionLink("Download PDF ", "Generate", new { @class = "btn btn-primary btnus", @style = "color:white", data_toggle = "modal", data_target = "#myModal" })</button>
+            </div>
+            <!-- featured-jobs end here -->
+
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        <td>
+                            <div class="btn btn-default" style="color:blue">
+                                Search by Subject: @Html.TextBox("Subject")
+                                <input class="btn btn-primary" style="color:white; border: 1px solid #dddddd;" type="submit" value="Search" id="submit" />
+                            </div>
+
+                        </td>
+
+                    </tr>
+                </table>
+            }
+
+
+            <div class="col-md-10 col-sm-12 col-xs-12">
+
+                <style>
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        padding: 8px;
+                    }
+
+                    tr:nth-child(even) {
+                        background-color: #dddddd;
+                    }
+                </style>
+
+               
+                <div>
+                    .
+                </div>
+                <table class=nth-child()>
+                    <thead>
+                        <tr>
+                            <th style="color:cornflowerblue">Recommanded Candidate</th>
+                            <th style="color:cornflowerblue">Subject</th>
+                            <th style="color:cornflowerblue">Description</th>
+                            <th style="color:cornflowerblue">StartDate</th>
+                            <th style="color:cornflowerblue">EndDate</th>
+
+                            <th style="color:cornflowerblue">Final Score</th>
+                            <th style="color:cornflowerblue">FeedBack</th>
+                            <th style="color:cornflowerblue">CandidateState</th>
+                            <th style="color:cornflowerblue">Details</th>
+                            <th style="color:cornflowerblue">Update </th>
+                            <th style="color:cornflowerblue">Delete </th>
+
+
+                        </tr>
+                    </thead>
+
+
+
+                    @foreach (var item in ViewBag.result)
+                    {
+                        <tr>
+                            <td>
+                                @item.candidat.FirstName   @item.candidat.LastName
+
+
+                            </td>
+                            <td>
+                                @item.Subject
+                            </td>
+                            <td>
+                                @item.Description
+                            </td>
+                            <td>
+                                <p><i class="fa fa-clock text-theme-colored mr-5" aria-hidden="true" style="width:80px"></i> @item.StartDate.Day @item.StartDate.ToString("MMM") @item.StartDate.Year </p>
+                            </td>
+                            <td>
+                                <p><i class="fa fa-clock text-theme-colored mr-5" aria-hidden="true" style="width:80px"></i> @item.EndDate.Day @item.EndDate.ToString("MMM") @item.EndDate.Year </p>
+
+                            </td>
+
+
+                            <td>
+                                @item.FinalResult
+                            </td>
+                            <td>
+                                @item.FeedBack
+                            </td>
+                            <td>
+                                @item.CandidateStates
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Details ", "Details", new { id = item.InterId }, htmlAttributes: new { @class = "btn btn-primary btnus", data_toggle = "modal", data_target = "#myModal", @style = "color:white" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Update", "Edit", new { id = item.InterId }, new { @class = "btn btn-info", @style = "color:white" })
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Delete ", "Delete", new { id = item.InterId }, new { @class = "btn btn-danger", @style = "color:white", data_toggle = "modal", data_target = "#myModal" })
+
+                            </td>
+                            <td>
+
+                                <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                                <div>
+                                    <div id="SkypeButton_Call_younes_1">
+                                        <script type="text/javascript">
+
+                                            Skype.ui({
+                                                "name": "dropdown",
+                                                "element": "SkypeButton_Call_younes_1",
+                                                "participants": ["@item.candidat.SkypeId"],
+                                                "imageSize": 32,
+
+                                            });
+
+                                        </script>
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <a href="~/Views/Candidate/Index.cshtml">~/Views/Candidate/Index.cshtml</a>
+
+                <a class="custom-close"> My Custom Close Link </a>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+
+
+    $(function () {
+        $(".custom-close").on('click', function () {
+            $('#myModal').modal('hide');
+        });
+    });</script>
+
+

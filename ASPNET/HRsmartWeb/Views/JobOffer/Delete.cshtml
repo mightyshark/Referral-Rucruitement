@@ -1,0 +1,69 @@
+﻿@model HRsmartWeb.Models.JobOfferViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = null;
+
+}
+
+<<div>
+    <fieldset>
+        <center> <h4>Delete Offer</h4></center>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JobTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Reference)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Reference)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mission)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mission)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" align="center">
+                <input type="submit" width:130px value="Delete Offer" class="btn btn-primary btnus" ," />
+
+
+
+
+            </div>
+        }
+        <div>
+
+            .
+        </div>
+        <div>
+
+            .
+        </div>
+    </fieldset>
+</div>

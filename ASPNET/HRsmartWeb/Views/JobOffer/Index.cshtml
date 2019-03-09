@@ -1,0 +1,227 @@
+﻿@model IEnumerable<HRsmartWeb.Models.JobOfferViewModel>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyTemplate.cshtml";
+
+}
+
+<div class="item">
+    <img src="@Url.Content("~/Content/MyTemplate/images/")banner4.png" alt="slider" title="slider" class="img-responsive" />
+    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jobs start here -->
+@*<div id="jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                    <!-- about-content start here -->
+                    <div class="jobs-content">
+                        <h1> Recommandations List </h1>
+
+                        <ul class="list-inline">
+                            <li>
+                                <a  >Home</a>
+                            </li>
+                            <li>></li>
+                            <li>
+                                <a > Recommandations List</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- jobs-content end here -->
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!-- jobs end here -->
+
+
+
+
+<div id="featured">
+
+    <div class="container">
+        <div class="row">
+            <!-- featured-jobs start here -->
+            <div class="featured-jobs">
+                <h1>FEATURED JOBS</h1>
+                <div class="border"></div>
+                <div class="border1"></div>
+            </div>
+            <!-- featured-jobs end here -->
+
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        <td>
+                            <div class="btn btn-default" style="color:blue">
+                                Search by location: @Html.TextBox("location")
+                                <input  class="btn btn-primary" style="color:white; border: 1px solid #dddddd;" type="submit" value="Search" id="submit" />
+                            </div>
+
+                        </td>
+
+                    </tr>
+                </table>
+            }
+
+            <div class="col-md-10 col-sm-12 col-xs-12">
+
+                <style>
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        
+                        width: 115%;
+                    }
+
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: center;
+                        padding: 5px;
+                    }
+
+                    tr:nth-child(even) {
+                        background-color: #dddddd;
+                    }
+                </style>
+                <table class=nth-child()>
+                    <thead>
+                        <tr>
+
+                            <th style="color:cornflowerblue">Job Title</th>
+                            <th style="color:cornflowerblue">Reference</th>
+                            <th style="color:cornflowerblue">Mission</th>
+                            <th style="color:cornflowerblue">Profile Demandé</th>
+                            <th style="color:cornflowerblue">Expiration Date</th>
+                            <th style="color:cornflowerblue">Location</th>
+                            <th style="color:cornflowerblue">Contract Type</th>
+                            <th style="color:cornflowerblue">Details</th>
+                            <th style="color:cornflowerblue">Update</th>
+                            <th style="color:cornflowerblue">Delete</th>
+                            <th style="color:cornflowerblue">Generate PDF</th>
+
+                        </tr>
+                    </thead>
+
+
+
+                   
+                @foreach (var item in ViewBag.result)
+                {
+                        <tr>
+                            <td>
+                                @item.JobTitle
+                            </td>
+
+                            <td>
+                                @item.Reference
+                            </td>
+
+                            <td>
+                                @item.Mission
+                            </td>
+
+                            <td>
+                                @item.DemanderProfile
+                            </td>
+
+                            <td>
+                                <p>@item.ExpirationDate.Day @item.ExpirationDate.ToString("MMM") @item.ExpirationDate.Year </p>
+                            </td>
+
+                            <td>
+                                <a href="javascript:RedirectToSecondPage()"><i class="fa fa-map-marker" aria-hidden="true"></i><input value=@item.Location hidden id="location" />@item.Location </a>
+                            </td>
+
+                            <td>
+                                @item.ContratType
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Details ", "Details", new { id = item.JobId }, htmlAttributes: new { @class = "btn btn-warning", data_toggle = "modal", data_target = "#myModal", @style = "color:white" })
+                            </td>
+
+                            @*<td>
+                                <a href="@Url.Action("DownloadViewPDF", "JobOffer",new { id = item.JobId })">Download ViewAsPdf</a>
+                            </td>*@
+
+                            <td>
+                                @Html.ActionLink("Update", "Edit", new { id = item.JobId }, new { @class = "btn btn-info", @style = "color:white" })
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Delete ", "Delete", new { id = item.JobId }, new { @class = "btn btn-danger", @style = "color:white", data_toggle = "modal", data_target = "#myModal" })
+                            </td>
+                          
+                            <td>
+                                @Html.ActionLink("Download PDF ", "DownloadViewPDF", new { id = item.JobId }, new { @class = "btn btn-success", @style = "color:white" })
+                            </td>
+
+                       </tr>
+
+                }
+                </table>
+                
+            </div>
+        </div>
+        
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-body">
+                <a href="Index">Index</a>
+
+                @*<a class="custom-close"> My Custom Close Link </a>*@
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+
+
+$(function () {
+    $(".custom-close").on('click', function () {
+    $('#myModal').modal('hide');
+     });
+});
+
+function RedirectToSecondPage()
+{
+    var input = document.getElementById('location').value;
+ //  var value = input ? input.value : 'defaultText';
+//alert(input);
+ window.location.href = 'JobOffer/Map?location=' + input;
+}
+</script>

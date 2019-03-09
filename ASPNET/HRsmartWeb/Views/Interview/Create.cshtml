@@ -1,0 +1,181 @@
+﻿@model HRsmartWeb.Models.InterviewViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MyTemplate.cshtml";
+
+}
+
+
+<div class="item">
+    <img src="@Url.Content("~/Content/MyTemplate/images/")banner4.png" alt="slider" title="slider" class="img-responsive" />
+    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- login start here -->
+<div id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!-- login-content start here -->
+                <div class="login-content">
+                    <h1>Add New Interview </h1>
+                    @ViewBag.candidatId
+                    <ul class="list-inline">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>></li>
+                        <li>
+                            <a href="login.html">new offer</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- login-content end here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@using (Html.BeginForm("Create", "Interview", FormMethod.Post, new { enctype = "multipart/form-data", id = "formid" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!-- login end here -->
+    <!-- login-form start here -->
+    <div id="login-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-2 col-md-8 col-sm-8  col-xs-12">
+                    <div class="form">
+                        <div class="border"></div>
+                        <div class="border1"></div>
+                        <form class="form-horizontal" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Subject</label>
+                                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { placeholder = "Subject", @class = "form-control", @id = "Subject" } })
+                                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                        <span class="field-validation-valid" id="Subject_id"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Inerview Description</label>
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { placeholder = "Description", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Start Date</label>
+                                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { placeholder = "Start Date", @class = "form-control", id = "stDateTxt" } })
+                                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>End Date</label>
+                                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { placeholder = "End Date", @class = "form-control", id = "enDateTxt" } })
+                                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>Candidate State</label>
+                                        @Html.DropDownList("CandidateStates", EnumHelper.GetSelectList(typeof(CandidateState)), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CandidateStates, "", new { @class = "text-danger" })
+                                        <br />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label>FedBack new  </label>
+                                        @Html.EditorFor(model => model.FeedBack, new { htmlAttributes = new { placeholder = "FeedBack", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.FeedBack, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="button">
+                                    <div class="col-sm-offset-1">
+                                        <input type="submit" value="Create" class="btn btn-primary btnus" onclick="ValidateStartDate()" />
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<!-- login-form  end here -->
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript" src="/Scripts/jquery.validate.js"></script>
+
+<script type="text/javascript">
+
+
+    function ValidateStartDate() {
+        var SDate = document.getElementById('stDateTxt').value;
+        var EDate = document.getElementById('enDateTxt').value;
+        var stDate = new Date(SDate);
+        var enDate = new Date(EDate);
+        var today = new Date();
+
+        if (stDate != '' && enDate != '' && stDate > enDate) {
+            alert('Error : Start Date is greater than End Date!');
+            document.getElementById('stDateTxt').value = EDate;
+        }
+        else if (stDate < today || enDate < today) {
+            alert('Error : Select Date is greater than today!');
+            document.getElementById('stDateTxt').value = '';
+            document.getElementById('stDateTxt').focus();
+        }
+
+    }
+
+
+
+
+</script>

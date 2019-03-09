@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+ 	template="/templateRM.xhtml"
+ 	>
+<ui:define name="pageContent">
+	  
+<h:head></h:head> 
+
+<body> 
+<div class="item">
+    <img src="resources/images/banner4.png" alt="slider" title="slider" class="img-responsive" />
+			    <div class="slide-detail">
+        <div class="container">
+            <div class="slider-caption">
+                <div class="off"></div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 paddright">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jobs start here -->
+<div id="jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                    <!-- about-content start here -->
+                    <div class="jobs-content">
+                        <h1> Job Offer List </h1>
+
+                        <ul class="list-inline">
+                            <li>
+                                <a  >Home</a>
+                            </li>
+                            <li>></li>
+                            <li>
+                                <a > Job Offer List</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- jobs-content end here -->
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- jobs end here -->
+        <table class="nth-child()">
+ 
+<h:form >
+		   <style>
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        
+                        width: 100%;
+                    }
+
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: center;
+                        padding: 5px;
+                    }
+
+                    tr:nth-child(even) {
+                        background-color: #dddddd;
+                    }
+                </style>
+                
+                
+			<h:dataTable value="#{jobOfferBean.findAll()}" var="r" border="1">
+ 				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{r.jobId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Job title</f:facet>
+					<h:outputText value="#{r.jobTitle}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">contract</f:facet>
+					<h:outputText value="#{r.contratType}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Location</f:facet>
+					<h:outputText value="#{r.location}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Job Date</f:facet>
+					<h:outputText value="#{r.expirationDate}" />
+				</h:column>
+				<h:column>
+				<h:commandButton value="Delete"
+					action="#{jobOfferBean.doDelete(r.jobId)}" />
+					</h:column>
+			<h:column>
+			
+			<h:commandButton value="Update"
+					 action="#{jobOfferBean.goToupdate(r)}"  />
+  					</h:column>
+			
+			</h:dataTable>
+			
+			
+					</h:form>
+	
+								</table>
+		
+				<h2></h2>
+		
+
+</body>
+</ui:define> 
+</ui:composition> 

@@ -1,0 +1,70 @@
+﻿@model HRsmartWeb.Models.JobOfferViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+
+}
+
+
+<div>
+    <fieldset>
+        <center> <h4>Detailed informations of the selected job offer</h4></center>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Reference)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Reference)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mission)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DemanderProfile)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ExpirationDate)
+            </dd>
+
+
+
+
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" align="center">
+                <input type="submit" width:130px value="Delete Offer" class="btn btn-primary btnus" ," />
+
+
+
+
+            </div>
+        }
+    </fieldset>
+</div>
+<p>
+
+    @Html.ActionLink("Update", "Edit", new { id = Model.JobId })|
+    @*<a href="Edit/>Edit</a>*@
+
+    @Html.ActionLink("Back to List", "Index")
+
+</p>

@@ -1,0 +1,74 @@
+﻿@model HRsmartWeb.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = null;
+}
+
+
+
+<div>
+    <fieldset>
+        <center> <h4>Delete User</h4></center>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                First Name :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                Last Name :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                Email Adress  :
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+
+            <dt>
+                Role :
+            </dt>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.Role)
+            </dd>
+
+
+        </dl>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" align="center">
+                <input type="submit" width:130px value="Delete User" class="btn btn-primary btnus" ," />
+
+
+
+
+            </div>
+        }
+        <div>
+
+            .
+        </div>
+        <div>
+
+            .
+        </div>
+    </fieldset>
+</div>
